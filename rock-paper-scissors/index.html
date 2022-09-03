@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        function randomRPS(){
+            let RPS = ["rock", "paper", "scissors"];
+            return (RPS[Math.floor(Math.random() * RPS.length)]);
+        }
+        function playRPS(playerRPS, computerRPS){
+            if(playerRPS === computerRPS)
+            return "Draw";
+            else if( (playerRPS === "rock" && computerRPS === "scissors") || 
+            (playerRPS === "scissors" && computerRPS === "paper") ||
+            (playerRPS === "paper" && computerRPS === "rock") )
+            return "Player wins";
+            else
+            return "Computer wins";
+        }
+        function game(){
+            let playerScore = 0;
+            let computerScore = 0;
+            let computerChoice = randomRPS();
+            for(i=0; i<5; i++)
+            {
+                let playerChoice = prompt(`Enter Your choice from (rock, paper, scissors) for round ${i+1}: `).toLowerCase();  
+                let result = playRPS(playerChoice, computerChoice);
+                if(result === "Player wins"){
+                    playerScore++;
+                    console.log(`${playerChoice}(player) vs ${computerChoice}(computer)\nPlayer wins round ${i+1}`);
+                }
+                else if(result === "Computer wins"){
+                    computerScore++;
+                    console.log(`${playerChoice}(player) vs ${computerChoice}(computer)\nComputer wins round ${i+1}`);
+                }
+                else
+                console.log(`${playerChoice}(player) vs ${computerChoice}(computer)\nDraw for round ${i+1}`);
+            }
+            if(playerScore > computerScore)
+            console.log(`Player is the winner\nPlayer score: ${playerScore}\nComputer score: ${computerScore}`);
+            else if (playerScore < computerScore)
+            console.log(`Computer is the winner\nPlayer score: ${playerScore}\nComputer score: ${computerScore}`);
+            else
+            console.log(`Draw\nPlayer score: ${playerScore}\nComputer score: ${computerScore}`);
+        }
+        game();
+    </script>
+</body>
+</html>
